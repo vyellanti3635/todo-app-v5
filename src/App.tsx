@@ -54,6 +54,32 @@ class App extends Component<Record<string, never>, AppState> {
     };
   }
 
+  handleAddTodo = (getItem: TodoItem, currentTodoList: TodoListKey) => {
+    this.setState((prevState) => {
+      const updatedList = [...prevState.TodoLists[currentTodoList], getItem];
+      return {
+        TodoLists: {
+          ...prevState.TodoLists,
+          [currentTodoList]: updatedList,
+        } as TodoLists,
+      };
+    });
+  };
+
+  handleToggleTodo = (listKey: TodoListKey, todoId: number) => {
+    this.setState((prevState) => {
+      const updatedList = prevState.TodoLists[listKey].map((todo) =>
+        todo.id === todoId ? { ...todo, done: !todo.done } : todo
+      );
+      return {
+        TodoLists: {
+          ...prevState.TodoLists,
+          [listKey]: updatedList,
+        } as TodoLists,
+      };
+    });
+  };
+
   onSort = (listNum: TodoItem[], sortType: string, dayKey: TodoListKey) => {
     listNum.sort((a, b) => {
       const isReversed = sortType === "asc" ? 1 : -1;
@@ -75,6 +101,8 @@ class App extends Component<Record<string, never>, AppState> {
           sortType={this.state.sortType}
           listNum={this.state.listNum}
           onSort={this.onSort}
+          onAddTodo={this.handleAddTodo}
+          onToggleTodo={this.handleToggleTodo}
           selectedDay={this.state.selectedDay}
           selectedDayLabel={this.state.selectedDayLabel}
         />

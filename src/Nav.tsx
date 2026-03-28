@@ -10,6 +10,8 @@ type NavProps = {
   sortType: string;
   listNum: string;
   onSort: (listNum: TodoItem[], sortType: string, dayKey: TodoListKey) => void;
+  onAddTodo: (item: TodoItem, listKey: TodoListKey) => void;
+  onToggleTodo: (listKey: TodoListKey, todoId: number) => void;
   selectedDay: TodoListKey;
   selectedDayLabel: string;
 };
@@ -46,6 +48,8 @@ function Nav(props: NavProps) {
                 todoLists={props.todoLists}
                 dayKey={props.selectedDay}
                 dayLabel={props.selectedDayLabel}
+                onAddTodo={props.onAddTodo}
+                onToggleTodo={props.onToggleTodo}
               />
             }
           />

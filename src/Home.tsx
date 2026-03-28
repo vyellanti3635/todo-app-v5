@@ -7,19 +7,11 @@ type HomeProps = {
   todoLists: TodoLists;
   dayKey: TodoListKey;
   dayLabel: string;
+  onAddTodo: (item: TodoItem, listKey: TodoListKey) => void;
+  onToggleTodo: (listKey: TodoListKey, todoId: number) => void;
 };
 
-type HomeState = {};
-
-class Home extends Component<HomeProps, HomeState> {
-  handleAddTodo = (getItem: TodoItem, currentTodoList: TodoListKey) => {
-    // handled at App level in future versions
-  };
-
-  handleToggleTodo = (listKey: TodoListKey, todoId: number) => {
-    // handled at App level in future versions
-  };
-
+class Home extends Component<HomeProps> {
   render() {
     const { todoLists, dayKey, dayLabel } = this.props;
 
@@ -32,9 +24,9 @@ class Home extends Component<HomeProps, HomeState> {
         <Todos
           todolists={todoLists[dayKey]}
           listKey={dayKey}
-          updateTodo={this.handleToggleTodo}
+          updateTodo={this.props.onToggleTodo}
         />
-        <AddTodo addItem={this.handleAddTodo} currentList={dayKey} />
+        <AddTodo addItem={this.props.onAddTodo} currentList={dayKey} />
       </div>
     );
   }
