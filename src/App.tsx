@@ -45,6 +45,11 @@ class App extends Component<Record<string, never>, AppState> {
         <Nav
           lists1={this.state.TodoLists.TodoList1}
           lists2={this.state.TodoLists.TodoList2}
+          lists3={this.state.TodoLists.TodoList3}
+          lists4={this.state.TodoLists.TodoList4}
+          lists5={this.state.TodoLists.TodoList5}
+          lists6={this.state.TodoLists.TodoList6}
+          lists7={this.state.TodoLists.TodoList7}
           sortType={this.state.sortType}
           listNum={this.state.listNum}
           onSort={this.onSort}

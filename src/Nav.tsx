@@ -8,6 +8,11 @@ import type { TodoItem } from "./TodoData";
 type NavProps = {
   lists1: TodoItem[];
   lists2: TodoItem[];
+  lists3: TodoItem[];
+  lists4: TodoItem[];
+  lists5: TodoItem[];
+  lists6: TodoItem[];
+  lists7: TodoItem[];
   sortType: string;
   listNum: string;
   onSort: (listNum: TodoItem[], sortType: string) => void;
@@ -45,6 +50,11 @@ function Nav(props: NavProps) {
               <AllTodos
                 lists1={props.lists1}
                 lists2={props.lists2}
+                lists3={props.lists3}
+                lists4={props.lists4}
+                lists5={props.lists5}
+                lists6={props.lists6}
+                lists7={props.lists7}
                 sortType={props.sortType}
                 listNum={props.listNum}
                 onSort={props.onSort}
