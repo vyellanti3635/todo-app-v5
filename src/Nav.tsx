@@ -3,13 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboardList, faHome } from "@fortawesome/free-solid-svg-icons";
 import Home from "./Home";
 import AllTodos from "./AllTodos";
-import type { TodoLists } from "./TodoData";
+import type { TodoItem } from "./TodoData";
 
 type NavProps = {
-  todoLists: TodoLists;
+  lists1: TodoItem[];
+  lists2: TodoItem[];
   sortType: string;
   listNum: string;
-  onSort: (listNum: any[], sortType: string) => void;
+  onSort: (listNum: TodoItem[], sortType: string) => void;
 };
 
 function Nav(props: NavProps) {
@@ -27,11 +28,7 @@ function Nav(props: NavProps) {
             </Link>
           </li>
           <li className="nav-item">
-            <Link
-              to="/allLists"
-              className="nav-link px-2"
-              aria-label="All Todo Lists"
-            >
+            <Link to="/allLists" className="nav-link px-2" aria-label="All Todo Lists">
               <FontAwesomeIcon
                 icon={faClipboardList}
                 className="fas fa-2x my-3 text-white"
@@ -45,7 +42,13 @@ function Nav(props: NavProps) {
           <Route
             path="/allLists"
             element={
-              <AllTodos todoLists={props.todoLists} onSort={props.onSort} />
+              <AllTodos
+                lists1={props.lists1}
+                lists2={props.lists2}
+                sortType={props.sortType}
+                listNum={props.listNum}
+                onSort={props.onSort}
+              />
             }
           />
         </Routes>

@@ -27,7 +27,7 @@ class App extends Component<Record<string, never>, AppState> {
     this.state = {
       sortType: "asc",
       listNum: "",
-      TodoLists: TodoData,
+      TodoLists: cloneTodoLists(TodoData),
     };
   }
 
@@ -41,12 +41,15 @@ class App extends Component<Record<string, never>, AppState> {
 
   render() {
     return (
-      <Nav
-        todoLists={this.state.TodoLists}
-        sortType={this.state.sortType}
-        listNum={this.state.listNum}
-        onSort={this.onSort}
-      />
+      <div className="App text-secondary">
+        <Nav
+          lists1={this.state.TodoLists.TodoList1}
+          lists2={this.state.TodoLists.TodoList2}
+          sortType={this.state.sortType}
+          listNum={this.state.listNum}
+          onSort={this.onSort}
+        />
+      </div>
     );
   }
 }

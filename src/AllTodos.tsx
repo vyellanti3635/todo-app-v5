@@ -1,47 +1,57 @@
-import type { TodoListKey, TodoLists } from "./TodoData";
+import type { TodoItem } from "./TodoData";
 
 type AllTodosProps = {
-  todoLists: TodoLists;
-  onSort: (listNum: any[], sortType: string) => void;
+  lists1: TodoItem[];
+  lists2: TodoItem[];
+  sortType: string;
+  listNum: string;
+  onSort: (listNum: TodoItem[], sortType: string) => void;
 };
 
-const LIST_ORDER: Array<{ key: TodoListKey; label: string }> = [
-  { key: "TodoList1", label: "Monday" },
-  { key: "TodoList2", label: "Tuesday" },
-  { key: "TodoList3", label: "Wednesday" },
-  { key: "TodoList4", label: "Thursday" },
-  { key: "TodoList5", label: "Friday" },
-  { key: "TodoList6", label: "Saturday" },
-  { key: "TodoList7", label: "Sunday" },
-];
-
 export default function AllTodos(props: AllTodosProps) {
-  const { todoLists } = props;
+  const { lists1, lists2 } = props;
 
   return (
     <div className="text-center">
       <h2>Todo Lists</h2>
 
-      {LIST_ORDER.map((entry) => (
-        <div key={entry.key} className="border mx-5 my-3 py-3 text-center">
-          <h3 className="text-info">{entry.label}</h3>
-          {todoLists[entry.key].map((item) => {
-            return <div key={item.id}>{item.text}</div>;
-          })}
-          <button
-            className="mx-1 mt-2 bg-info text-white border-0"
-            onClick={() => props.onSort(todoLists[entry.key], "asc")}
-          >
-            Rush
-          </button>
-          <button
-            className="mx-1 mt-2 bg-info text-white border-0"
-            onClick={() => props.onSort(todoLists[entry.key], "desc")}
-          >
-            Relax
-          </button>
-        </div>
-      ))}
+      <div className="border mx-5 my-3 py-3">
+        <h3 className="text-info">Monday</h3>
+        {lists1.map((list1) => {
+          return <div key={list1.id}>{list1.text}</div>;
+        })}
+        <button
+          className="mx-1 mt-2 bg-info text-white border-0"
+          onClick={() => props.onSort(lists1, "asc")}
+        >
+          Rush
+        </button>
+        <button
+          className="mx-1 mt-2 bg-info text-white border-0"
+          onClick={() => props.onSort(lists1, "desc")}
+        >
+          Relax
+        </button>
+      </div>
+
+      <div className="border mx-5 my-3 py-3">
+        <h3 className="text-info">Tuesday</h3>
+        {lists2.map((list2) => {
+          return <div key={list2.id}>{list2.text}</div>;
+        })}
+        <button
+          className="mx-1 mt-2 bg-info text-white border-0"
+          onClick={() => props.onSort(lists2, "asc")}
+        >
+          Rush
+        </button>
+        <button
+          className="mx-1 mt-2 bg-info text-white border-0"
+          onClick={() => props.onSort(lists2, "desc")}
+        >
+          Relax
+        </button>
+      </div>
     </div>
   );
 }
