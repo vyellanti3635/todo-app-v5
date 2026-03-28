@@ -5,7 +5,7 @@ type AllTodosProps = {
   todoLists: TodoLists;
   sortType: string;
   listNum: string;
-  onSort: (listNum: TodoItem[], sortType: string) => void;
+  onSort: (listNum: TodoItem[], sortType: string, dayKey: TodoListKey) => void;
 };
 
 const LIST_ORDER: Array<{ key: TodoListKey; label: string }> = [
@@ -22,8 +22,8 @@ export default function AllTodos(props: AllTodosProps) {
   const { todoLists } = props;
   const navigate = useNavigate();
 
-  const handleSort = (items: TodoItem[], sortType: string) => {
-    props.onSort(items, sortType);
+  const handleSort = (key: TodoListKey, sortType: string) => {
+    props.onSort(todoLists[key], sortType, key);
     navigate("/");
   };
 
@@ -39,13 +39,13 @@ export default function AllTodos(props: AllTodosProps) {
           })}
           <button
             className="mx-1 mt-2 bg-info text-white border-0"
-            onClick={() => handleSort(todoLists[entry.key], "asc")}
+            onClick={() => handleSort(entry.key, "asc")}
           >
             Rush
           </button>
           <button
             className="mx-1 mt-2 bg-info text-white border-0"
-            onClick={() => handleSort(todoLists[entry.key], "desc")}
+            onClick={() => handleSort(entry.key, "desc")}
           >
             Relax
           </button>

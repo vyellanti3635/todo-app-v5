@@ -3,13 +3,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboardList, faHome } from "@fortawesome/free-solid-svg-icons";
 import Home from "./Home";
 import AllTodos from "./AllTodos";
-import type { TodoItem, TodoLists } from "./TodoData";
+import type { TodoItem, TodoListKey, TodoLists } from "./TodoData";
 
 type NavProps = {
   todoLists: TodoLists;
   sortType: string;
   listNum: string;
-  onSort: (listNum: TodoItem[], sortType: string) => void;
+  onSort: (listNum: TodoItem[], sortType: string, dayKey: TodoListKey) => void;
+  selectedDay: TodoListKey;
+  selectedDayLabel: string;
 };
 
 function Nav(props: NavProps) {
@@ -37,7 +39,16 @@ function Nav(props: NavProps) {
         </ul>
 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                todoLists={props.todoLists}
+                dayKey={props.selectedDay}
+                dayLabel={props.selectedDayLabel}
+              />
+            }
+          />
           <Route
             path="/allLists"
             element={
