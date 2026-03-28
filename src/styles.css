@@ -1,0 +1,30 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  min-height: 100vh;
+  padding-bottom: 2rem;
+}
+
+.header {
+  height: 70px;
+}
+
+.all-todo-page {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 1rem 1.5rem;
+  text-align: left;
+}
+
+.all-list-card {
+  margin-bottom: 1.25rem;
+}
+
+ul #notebox {
+  visibility: hidden;
+  position: absolute;
+}
+
+ul #todoDone {
+  width: 25px;
+}
