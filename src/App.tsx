@@ -36,20 +36,14 @@ class App extends Component<Record<string, never>, AppState> {
       const isReversed = sortType === "asc" ? 1 : -1;
       return isReversed * a.text.localeCompare(b.text);
     });
-    this.setState({ sortType });
+    this.setState({ sortType, TodoLists: { ...this.state.TodoLists } });
   };
 
   render() {
     return (
       <div className="App text-secondary">
         <Nav
-          lists1={this.state.TodoLists.TodoList1}
-          lists2={this.state.TodoLists.TodoList2}
-          lists3={this.state.TodoLists.TodoList3}
-          lists4={this.state.TodoLists.TodoList4}
-          lists5={this.state.TodoLists.TodoList5}
-          lists6={this.state.TodoLists.TodoList6}
-          lists7={this.state.TodoLists.TodoList7}
+          todoLists={this.state.TodoLists}
           sortType={this.state.sortType}
           listNum={this.state.listNum}
           onSort={this.onSort}
